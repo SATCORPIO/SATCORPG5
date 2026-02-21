@@ -1,184 +1,126 @@
-/* styles.css */
-/* Ultra Realistic Theme: Use realistic background image, adjust for luxury concierge feel with depth and shadows */
+:root {
+    --bg-black: #0a0a0a;
+    --panel-gray: #141414;
+    --accent-gold: #c5a059;
+    --text-main: #e0e0e0;
+    --text-dim: #888;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Roboto Mono', monospace;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://cdn.prod.website-files.com/6781127baf9008dfea4f3289/6781127baf9008dfea4f3348_TM1134-UAE-Dubai-Como%20Residence_Vp%20Interior%2005_Rev01.avif');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #ffffff; /* White text for contrast */
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    font-family: var(--font-sans);
     line-height: 1.6;
-    position: relative;
+    overflow-x: hidden;
 }
 
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Scanline Effect */
+.scanline {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
-    z-index: -1;
+    height: 100px;
+    z-index: 9999;
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(197, 160, 89, 0.03) 50%, rgba(0,0,0,0) 100%);
+    opacity: 0.1;
+    position: fixed;
+    bottom: 100%;
+    animation: scan 8s linear infinite;
+    pointer-events: none;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
+@keyframes scan {
+    0% { bottom: 100%; }
+    100% { bottom: -100%; }
 }
 
-header {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-    padding: 40px 0;
-    text-align: center;
-}
-
-header h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 4em;
-    margin: 0;
-    color: #ffffff;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Realistic shadow */
-}
-
-header .tagline {
-    font-size: 1.4em;
-    color: #dddddd;
-    margin: 10px 0 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
+nav {
+    padding: 2rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo span { color: var(--accent-gold); }
+
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav li {
-    margin: 10px 15px;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 400;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    position: relative;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-nav a:hover {
-    color: #ffd700; /* Gold for luxury */
-    text-shadow: 0 0 10px #ffd700;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #ffd700;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-nav a:hover::after {
-    transform: scaleX(1);
-}
-
-main {
-    padding: 40px 0;
-}
-
-section {
-    margin-bottom: 60px;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent for glassmorphism */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Realistic shadows */
-    backdrop-filter: blur(10px); /* Glass effect for realism */
-    border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5em;
-    color: #ffffff;
-    border-bottom: 2px solid #ffd700;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-h3 {
-    font-size: 1.8em;
-    color: #dddddd;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-ul {
-    list-style-type: square;
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-li:hover {
-    transform: translateX(10px);
-}
-
-footer {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    padding: 20px 0;
+    align-items: center;
     text-align: center;
-    font-size: 0.9em;
-    color: #dddddd;
+    padding: 0 1rem;
+}
+
+.glitch {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: uppercase;
     position: relative;
-    z-index: 1;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: var(--accent-gold);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 3em;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav li {
-        margin: 10px 0;
-    }
+.subtitle {
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    max-width: 600px;
+    margin-bottom: 2rem;
 }
 
-/* Animations */
-section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+.btn-primary {
+    background: var(--accent-gold);
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 1rem;
 }
 
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.btn-primary:hover { background: #fff; box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); }
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.skill-card {
+    background: var(--panel-gray);
+    padding: 3rem;
+    transition: 0.4s;
+}
+
+.skill-card:hover {
+    background: #1a1a1a;
+    border-left: 4px solid var(--accent-gold);
+}
+
+.skill-card h3 {
+    font-family: var(--font-mono);
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+}
+
+.specs {
+    list-style: none;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
 }
