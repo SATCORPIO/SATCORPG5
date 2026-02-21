@@ -1,518 +1,296 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP · Concierge empire</title>
-    <!-- styles.css (embedded) -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #0b0a0c;
-            background-image: radial-gradient(circle at 25% 0%, #1f1b24 0%, #0a080c 100%);
-            font-family: 'Inter', 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #e2dde7;
-            line-height: 1.5;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
-        }
-
-        /* luxury dark concierge texture */
-        .empire-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(10, 8, 12, 0.75);
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(210, 180, 140, 0.15);
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(230, 200, 160, 0.05);
-            border-radius: 42px;
-            padding: 2.8rem 2.5rem;
-        }
-
-        /* SATCORP header — concierge badge */
-        .title-block {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3.5rem;
-            border-bottom: 1px solid rgba(200, 175, 130, 0.25);
-            padding-bottom: 1.5rem;
-        }
-
-        .insignia {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-weight: 400;
-            color: #c0a16b;
-            background: rgba(30, 25, 20, 0.7);
-            padding: 0.5rem 1.2rem 0.5rem 1.8rem;
-            border-radius: 60px;
-            border: 1px solid #b89e6b30;
-            backdrop-filter: blur(4px);
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-
-        h1 {
-            font-size: 5rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            color: #f5eee6;
-            text-shadow: 0 2px 10px rgba(210, 170, 100, 0.3);
-        }
-
-        .concierge-tag {
-            font-size: 1.25rem;
-            border-left: 4px solid #b58e5b;
-            padding-left: 1.2rem;
-            color: #ccb690;
-            font-weight: 350;
-            max-width: 400px;
-            margin-top: 0.75rem;
-        }
-
-        .deck-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem 1.5rem;
-            margin: 3rem 0 2.5rem;
-        }
-
-        /* skill cards — modular, dark, premium */
-        .skill-card {
-            background: rgba(16, 14, 18, 0.7);
-            backdrop-filter: blur(3px);
-            border: 1px solid rgba(170, 145, 110, 0.15);
-            border-radius: 28px;
-            padding: 1.8rem 1.5rem;
-            transition: border-color 0.2s, box-shadow 0.3s;
-            box-shadow: 0 15px 25px -20px #000;
-        }
-
-        .skill-card:hover {
-            border-color: #bda37e40;
-            box-shadow: 0 20px 30px -18px #e0b07020, inset 0 0 10px #3a302310;
-        }
-
-        .card-number {
-            font-size: 0.85rem;
-            color: #a38960;
-            letter-spacing: 2px;
-            margin-bottom: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed #665940;
-            padding-bottom: 0.5rem;
-        }
-
-        .operator-mark {
-            font-family: monospace;
-            color: #bd9f70;
-        }
-
-        .skill-card h3 {
-            font-size: 1.8rem;
-            font-weight: 350;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            color: #f0e2d0;
-        }
-
-        .skill-desc {
-            font-size: 0.95rem;
-            color: #bfb6aa;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-        }
-
-        .skill-desc ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-desc li {
-            position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.45rem;
-            font-weight: 280;
-            border-left: 1px solid #5f5340;
-        }
-
-        .pill {
-            display: inline-block;
-            background: #1e1a14;
-            border: 1px solid #4a3f30;
-            border-radius: 40px;
-            padding: 0.2rem 1rem;
-            font-size: 0.8rem;
-            color: #dbbd90;
-            letter-spacing: 0.5px;
-            margin-right: 0.3rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .tech-strip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 1rem;
-        }
-
-        /* special spread for systems / concierge */
-        .featured-cluster {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.8rem;
-            margin: 2.8rem 0;
-            background: #0c0a0e80;
-            border-radius: 38px;
-            padding: 2rem;
-            border: 1px solid #52462f40;
-        }
-
-        .manifesto {
-            background: #040304;
-            padding: 2rem 2.2rem;
-            border-radius: 28px;
-            border-left: 8px solid #ad8b5e;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: #dacbb8;
-            box-shadow: inset 0 0 20px #0f0b07;
-        }
-
-        .manifesto p {
-            font-weight: 280;
-        }
-
-        .manifesto strong {
-            color: #e9cfaa;
-            font-weight: 450;
-        }
-
-        .gold-quote {
-            font-size: 0.9rem;
-            color: #ad9a7a;
-            letter-spacing: 1.5px;
-            margin-top: 0.8rem;
-        }
-
-        .footer-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #3f392e;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            font-size: 0.95rem;
-            color: #aa9f8c;
-        }
-
-        .stamp {
-            font-family: 'Courier New', monospace;
-            color: #8b7a60;
-            border: 1px solid #5f533d;
-            padding: 0.25rem 1.5rem;
-            border-radius: 40px;
-        }
-
-        /* script will add dynamic concierge pulse */
-        .cursor-trace {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #cbaa77, transparent);
-            width: 100%;
-            margin-top: 1rem;
-            opacity: 0.4;
-        }
-
-        /* responsiveness */
-        @media (max-width: 700px) {
-            .empire-container { padding: 1.5rem; }
-            h1 { font-size: 3.2rem; }
-            .featured-cluster { grid-template-columns: 1fr; }
-        }
-    </style>
-    <!-- Google Font (Inter) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <title>SATCORP Concierge Empire</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Three.js for Vanta -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- Vanta.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 </head>
 <body>
-    <div class="empire-container" id="satcorp-empire">
-        <!-- header : concierge identity -->
-        <div class="title-block">
-            <div>
-                <span class="insignia">⚜️ ANU · TACTICAL CONCIERGE ⚜️</span>
-                <h1>SATCORP<br><span style="font-size: 2rem; display: block; color: #bba070; letter-spacing: 3px;">DEVELOPER BRANCH · KI-RA · KYRAX · PULSΞ</span></h1>
-                <div class="concierge-tag">
-                    end-to-end clarity → scope → execution → polish. concierge empire.
-                </div>
-            </div>
-            <div style="text-align: right; color: #ad9f84;">
-                <div style="font-size: 1.8rem;">⚡RTX</div>
-                <div style="font-size: 0.9rem;">workstation driven</div>
-            </div>
-        </div>
-
-        <!-- SKILL DECK : grid layout  -->
-        <div class="deck-grid" id="skillDeck">
-            <!-- 1. core identity -->
-            <div class="skill-card">
-                <div class="card-number">01 <span class="operator-mark">⌨️ core</span></div>
-                <h3>Operator identity</h3>
-                <div class="skill-desc">
-                    <ul>
-                        <li>End-to-end problem solver · design/automation/brand/systems</li>
-                        <li>Vague → deployable assets (web/brand/workflow/media)</li>
-                        <li>RTX rapid iteration · client-first concierge</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- 2. brand/visual platform -->
-            <div class="skill-card">
-                <div class="card-number">02 <span class="operator-mark">🎨 brand</span></div>
-                <h3>Brand · identity</h3>
-                <div class="skill-desc">
-                    <ul>
-                        <li>Modular identity / wordmarks · color doctrine · guidelines</li>
-                        <li>Social assets / decks / Canva templates</li>
-                        <li>PNG/SVG/AI source · brand books</li>
-                    </ul>
-                    <div class="tech-strip"><span class="pill">luxury/minimal</span><span class="pill">print-ready PDF</span></div>
-                </div>
-            </div>
-            <!-- 3. web/ui systems -->
-            <div class="skill-card">
-                <div class="card-number">03 <span class="operator-mark">🌐 ui/ux</span></div>
-                <h3>Web · UI systems</h3>
-                <div class="skill-desc">
-                    <ul>
-                        <li>Landing/portfolios/dashboards · responsive</li>
-                        <li>GSAP · Vanta · basic React · dark/light modes</li>
-                        <li>HTML/CSS/JS · deployment (local → VPS)</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- 4. systems architecture (double width manually via css later, but grid handles) -->
-            <div class="skill-card">
-                <div class="card-number">04 <span class="operator-mark">⚙️ systems</span></div>
-                <h3>Systems architecture</h3>
-                <div class="skill-desc">
-                    <ul>
-                        <li>SOP / workflow mapping · AI-assisted pipelines</li>
-                        <li>Backend logic · freelance architecture</li>
-                        <li>Brand clarity / long-term scalability</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- 5. streaming/broadcast -->
-            <div class="skill-card">
-                <div class="card-number">05 <span class="operator-mark">📡 broadcast</span></div>
-                <h3>Stream · overlay</h3>
-                <div class="skill-desc">
-                    <ul><li>OBS scenes · alert/HUD design · animated overlays</li><li>TikTok/live visual kits</li></ul>
-                </div>
-            </div>
-            <!-- 6. ai-enhanced workflows -->
-            <div class="skill-card">
-                <div class="card-number">06 <span class="operator-mark">🤖 ai</span></div>
-                <h3>AI creative workflows</h3>
-                <div class="skill-desc">
-                    <ul><li>prompt frameworks · brand-locked AI visuals</li><li>custom AI personas · automation</li></ul>
-                </div>
-            </div>
-            <!-- 7. game-dev/worldbuilding (larger block, will span via css but keep simple) -->
-            <div class="skill-card" style="grid-column: span 1;">
-                <div class="card-number">07 <span class="operator-mark">🎮 game dev</span></div>
-                <h3>World-building · engine</h3>
-                <div class="skill-desc">
-                    <ul>
-                        <li>Unity/Unreal · Blender · gameplay mods / HUD</li>
-                        <li>Factions/lore/canon · cinematic key art</li>
-                        <li>FBX/GLTF · engine-ready assets</li>
-                    </ul>
-                    <div class="tech-strip"><span class="pill">Unreal</span><span class="pill">Unity</span><span class="pill">Blender</span><span class="pill">Substance</span></div>
-                </div>
-            </div>
-            <!-- 8. client experience/concierge -->
-            <div class="skill-card">
-                <div class="card-number">08 <span class="operator-mark">🤝 concierge</span></div>
-                <h3>Client experience</h3>
-                <div class="skill-desc">
-                    <ul><li>scope/revision control · security-first</li><li>pre-order vetting · checkpoints</li></ul>
-                </div>
-            </div>
-            <!-- 9. platforms/marketplaces -->
-            <div class="skill-card">
-                <div class="card-number">09 <span class="operator-mark">🛒 platforms</span></div>
-                <h3>Fiverr · freelance</h3>
-                <div class="skill-desc">
-                    <ul><li>gig architecture · package tiers (basic·standard·premium)</li><li>upsell logic</li></ul>
-                </div>
-            </div>
-            <!-- 10. documentation/knowledge -->
-            <div class="skill-card">
-                <div class="card-number">10 <span class="operator-mark">📚 docs</span></div>
-                <h3>Knowledge systems</h3>
-                <div class="skill-desc">
-                    <ul><li>long-form guides · versioned documentation · taxonomies</li></ul>
-                </div>
-            </div>
-            <!-- 11. asset packaging/delivery -->
-            <div class="skill-card">
-                <div class="card-number">11 <span class="operator-mark">📦 delivery</span></div>
-                <h3>Asset packaging</h3>
-                <div class="skill-desc">
-                    <ul><li>print/web-ready · structured handoff · version control</li></ul>
-                </div>
-            </div>
-            <!-- 12. ideal clients -->
-            <div class="skill-card">
-                <div class="card-number">12 <span class="operator-mark">👔 clients</span></div>
-                <h3>Ideal clients</h3>
-                <div class="skill-desc">
-                    founders · creators · real estate · brands
-                </div>
-            </div>
-            <!-- 13. differentiators -->
-            <div class="skill-card">
-                <div class="card-number">13 <span class="operator-mark">⚜️ edge</span></div>
-                <h3>SATCORP difference</h3>
-                <div class="skill-desc">
-                    concierge execution · brand+systems · hardware speed · modular builds · world-class polish
-                </div>
-            </div>
-        </div>
-
-        <!-- Standard / doctrine featured cluster -->
-        <div class="featured-cluster">
-            <div class="manifesto">
-                <p style="font-size: 1.5rem; margin-bottom: 0.75rem;">⸻ THE STANDARD ⸻</p>
-                <p><strong>Technology is a force multiplier, not a crutch.</strong> AI is not a replacement for thought. Automation is not an excuse for laziness. We use technology to extend human intent, remove friction, increase leverage, preserve focus. We remain accountable for outcomes.</p>
-                <div class="gold-quote">new modules · systems · refinements · continuous evolution</div>
-            </div>
-            <div style="background: #19141c; border-radius: 24px; padding: 1.8rem; border:1px solid #5f4e33">
-                <span style="color:#c7a977; font-size:1.2rem;">◈ CONCIERGE PILLARS</span>
-                <ul style="margin-top: 1rem; list-style: none;">
-                    <li>🔹 clarity → scope → execution → polish</li>
-                    <li>🔹 modular / scalable builds</li>
-                    <li>🔹 AI-accelerated · human-accountable</li>
-                    <li>🔹 canon · world-building · KYRAX · PULSΞ</li>
+    <div id="vanta-bg"></div>
+    <header>
+        <div class="container">
+            <h1>SATCORP</h1>
+            <p class="tagline">Tactical Concierge Services Empire</p>
+            <nav>
+                <ul>
+                    <li><a href="#core-identity">Core Identity</a></li>
+                    <li><a href="#brand-systems">Brand Systems</a></li>
+                    <li><a href="#web-design">Web Design</a></li>
+                    <li><a href="#systems-architecture">Systems Architecture</a></li>
+                    <li><a href="#streaming">Streaming & Broadcast</a></li>
+                    <li><a href="#ai-workflows">AI Workflows</a></li>
+                    <li><a href="#game-dev">Game Development</a></li>
+                    <li><a href="#client-experience">Client Experience</a></li>
+                    <li><a href="#platforms">Platforms</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#asset-packaging">Asset Packaging</a></li>
+                    <li><a href="#ideal-clients">Ideal Clients</a></li>
+                    <li><a href="#what-makes-different">What Makes SATCORP Different</a></li>
+                    <li><a href="#the-standard">The Standard</a></li>
                 </ul>
-                <div style="margin-top: 1.5rem; background: #00000040; border-radius: 2rem; padding: 0.8rem 1.2rem; color: #ccb690">
-                    ⚡ ANU · KI-RA STUDIOS · KYRAX AI · PULSΞ BROADCAST
-                </div>
-            </div>
+            </nav>
         </div>
+    </header>
 
-        <!-- footer / asset lineage -->
-        <div class="footer-section">
-            <div class="stamp">CONCIERGE EMPIRE · DEV BRANCH v.1</div>
-            <div style="display: flex; gap: 2rem;">
-                <span>◈  interactive UI · dark mode native</span>
-                <span>◈  engine-ready assets · Blender/Unreal</span>
-            </div>
-            <div>© SATCORP · KI-RA · KYRAX · PULSΞ</div>
+    <main class="container">
+        <section id="core-identity">
+            <h2>1. Core Identity/Operator Value</h2>
+            <ul>
+                <li>End-to-end problem solver bridging design/automation/branding/systems</li>
+                <li>Translates vague ideas into deployable assets (web/brand/workflow/media)</li>
+                <li>High-performance workstation driven delivery (RTX workflows/rapid iteration)</li>
+                <li>Client-first concierge model: clarity→scope→execution→polish</li>
+            </ul>
+        </section>
+
+        <section id="brand-systems">
+            <h2>2. Brand, Visual/Platform Systems</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Brand foundation/full identity systems</li>
+                <li>Modular design frameworks built for scalability</li>
+                <li>Wordmark/logotype design (minimalist/luxury/modern)</li>
+                <li>Color doctrine/typography systems/usage rules</li>
+                <li>Brand guideline PDFs (editable/print-ready)</li>
+                <li>Visual identity extensions (favicons/social formats)</li>
+                <li>Multi-platform brand guideline documentation</li>
+                <li>Asset systems engineered for long-term growth</li>
+                <li>Brand-aligned content systems/campaign creative direction</li>
+                <li>Social media platform-specific assets (IG grids & stories/TikTok Covers)</li>
+                <li>Presentation Decks/pitch slides/banners/print collateral</li>
+                <li>Editable template systems (Canva/etc.)</li>
+            </ul>
+            <h3>Deliverables</h3>
+            <ul>
+                <li>PNG/SVG/AI source files</li>
+                <li>Brand books/mini style guides</li>
+                <li>Logo usage/spacing rules</li>
+            </ul>
+        </section>
+
+        <section id="web-design">
+            <h2>3. Web Design/UI Systems</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Landing pages/portfolios/business sites/dashboards</li>
+                <li>Responsive design systems</li>
+                <li>Web UI/UX systems for web apps/dashboards/portals</li>
+                <li>Interactive UI elements/animation</li>
+                <li>Dark/light modes/custom cursors/animations</li>
+                <li>Hosting/deployment strategy (local→VPS→scalable environments)</li>
+            </ul>
+            <h3>Tech Stack</h3>
+            <ul>
+                <li>HTML·CSS·JS</li>
+                <li>GSAP·Vanta.js·basic React (as needed)</li>
+                <li>SEO-ready structure/performance tuning</li>
+            </ul>
+        </section>
+
+        <section id="systems-architecture">
+            <h2>4. Systems Architecture</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Workflow mapping/SOP creation</li>
+                <li>Client intake/files/asset organization</li>
+                <li>AI-assisted production pipelines</li>
+                <li>Toolchain optimization</li>
+                <li>Digital process mapping</li>
+                <li>System logic/modular frameworks</li>
+                <li>Operational efficiency planning</li>
+                <li>Backend logic planning and command architecture</li>
+            </ul>
+            <h3>Application Layer</h3>
+            <ul>
+                <li>Freelance service architecture/digital product structuring</li>
+                <li>Process documentation/SOPs</li>
+                <li>Scalable service/business system design</li>
+            </ul>
+            <h3>Advisory Layer</h3>
+            <ul>
+                <li>Brand Clarity/Positioning</li>
+                <li>Scope definition/expectation alignment</li>
+                <li>Creative direction consulting</li>
+                <li>Long-term scalability planning</li>
+            </ul>
+        </section>
+
+        <section id="streaming">
+            <h2>5. Streaming/Broadcast/Overlay Design</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>OBS scene architecture/overlay design</li>
+                <li>Alert/HUD style UI design</li>
+                <li>Stream branding packages</li>
+                <li>TikTok/live-broadcast visual kits</li>
+                <li>Animated overlays/scene layouts</li>
+                <li>Creator-focused visual systems</li>
+            </ul>
+        </section>
+
+        <section id="ai-workflows">
+            <h2>6. AI-Enhanced Creative Workflows</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Prompt engineering/reusable prompt frameworks</li>
+                <li>Brand-consistent AI visuals/style-locked pipelines</li>
+                <li>Rapid concept iteration</li>
+                <li>Task automation using AI tools</li>
+                <li>Custom AI personas/operational agents</li>
+                <li>AI accelerated execution inside already-defined systems</li>
+            </ul>
+        </section>
+
+        <section id="game-dev">
+            <h2>7. Game-Development/World-Building Design</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Real-time engine workflows (Unity/Unreal Engine)</li>
+                <li>Gameplay/systems/QOL MODs</li>
+                <li>Game-ready asset creation/optimization</li>
+                <li>Environment/blockout/level prototyping</li>
+                <li>Interactive prototypes/vertical slices</li>
+                <li>Mobile game prototyping (iOS/Android focus)</li>
+                <li>Technical art pipelines (assets→engine)</li>
+                <li>Performance-aware design (LOD/batching/optimization)</li>
+                <li>Cross-platform (PC/Mobile/WebGL)</li>
+                <li>HUD/UI systems for games/interactive apps</li>
+                <li>Canon documentation/lore systems</li>
+                <li>Faction/operator/environment design</li>
+                <li>Poster/cinematic key art</li>
+            </ul>
+            <h3>Tools/Engines</h3>
+            <ul>
+                <li>Blender – Modeling/Sculpting/Uvs/Animations/Export pipelines</li>
+                <li>Unity – 2D/3D Games/Mobile-first builds/Rapid Prototyping</li>
+                <li>Unreal Engine – Cinematic visuals/High-fidelity environments/Blueprints</li>
+                <li>Substance (as needed) – Materials/Texturing</li>
+                <li>Engine-ready export standards (FBX/GLTF/PNG/EXR)</li>
+            </ul>
+            <h3>Game-Adjacent Focus (SATCORP Style)</h3>
+            <ul>
+                <li>UI/HUD concepts for games/simulations</li>
+                <li>Worldbuilding systems/canon documentation</li>
+                <li>Factions/operators/environments/lore bibles</li>
+                <li>Poster/key art/cinematic mockups</li>
+                <li>Brand-locked game worlds (visual+narrative cohesion)</li>
+            </ul>
+            <h3>Deliverables</h3>
+            <ul>
+                <li>Engine-ready assets</li>
+                <li>Packaged Mods</li>
+                <li>Prototype builds/Playable demos</li>
+                <li>Visual slices (cinematic/interactive)</li>
+                <li>UI/HUD kits</li>
+                <li>World/system Docs</li>
+                <li>Source files+structured handoff</li>
+            </ul>
+        </section>
+
+        <section id="client-experience">
+            <h2>8. Client Experience/Concierge Skills</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Scope clarification/expectation alignment</li>
+                <li>Pre-order vetting/intake</li>
+                <li>Clear timelines/revision control</li>
+                <li>Security-first communication practices</li>
+            </ul>
+            <h3>Process</h3>
+            <ul>
+                <li>Clarify goal/constraints</li>
+                <li>Align scope/deliverables</li>
+                <li>Execute with checkpoints</li>
+                <li>Polish/export/handoff</li>
+            </ul>
+        </section>
+
+        <section id="platforms">
+            <h2>9. Platforms/Marketplaces</h2>
+            <h3>Experience</h3>
+            <ul>
+                <li>Fiverr gig architecture/optimization</li>
+                <li>Freelance offer structuring</li>
+                <li>Package tier design (Basic·Standard·Premium)</li>
+                <li>Upsell/add-on logic</li>
+            </ul>
+        </section>
+
+        <section id="documentation">
+            <h2>10. Documentation/Knowledge Systems</h2>
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Long-form guides/databases</li>
+                <li>Versioned documentation</li>
+                <li>Structured lists/taxonomies</li>
+                <li>Canon-locked references</li>
+            </ul>
+        </section>
+
+        <section id="asset-packaging">
+            <h2>11. Asset Packaging/Delivery</h2>
+            <ul>
+                <li>Professional file structuring</li>
+                <li>Print-ready/web-ready exports</li>
+                <li>Organized delivery systems</li>
+                <li>Version control/revisions</li>
+                <li>Long-term usability assurance</li>
+            </ul>
+        </section>
+
+        <section id="ideal-clients">
+            <h2>12. Ideal Clients</h2>
+            <ul>
+                <li>Founders/small businesses</li>
+                <li>Creators/streamers</li>
+                <li>Real estate/professional services</li>
+                <li>Brands seeking long-term identity consistency</li>
+            </ul>
+        </section>
+
+        <section id="what-makes-different">
+            <h2>13. What makes SATCORP different</h2>
+            <ul>
+                <li>Concierge-level execution</li>
+                <li>Brand + systems in one operator</li>
+                <li>Hardware-accelerated speed</li>
+                <li>World-class presentation polished</li>
+                <li>Modular/scalable builds</li>
+                <li>High-performance workstation workflows</li>
+                <li>Clear communication/structured delivery</li>
+            </ul>
+        </section>
+
+        <section id="the-standard">
+            <h2>The Standard</h2>
+            <p>Technology is a force multiplier, not a crutch.<br>
+            AI is not a replacement for thought.<br>
+            Automation is not an excuse for laziness.<br>
+            We use technology to:<br>
+            • Extend human intent<br>
+            • Remove friction<br>
+            • Increase leverage<br>
+            • Preserve focus<br>
+            We remain accountable for outcomes.<br>
+            New modules, systems, and refinements are continuously introduced as projects evolve.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SATCORP. All rights reserved.</p>
         </div>
-        <div class="cursor-trace" id="dynamicTrace"></div>
-    </div>
+    </footer>
 
-    <!-- script.js (embedded) -->
-    <script>
-        (function() {
-            // Concierge theme micro-interactions: subtle dynamic pulse on empire container
-            const empire = document.getElementById('satcorp-empire');
-            const trace = document.getElementById('dynamicTrace');
-
-            // add some ambient concierge motion effect
-            let hue = 35;
-            setInterval(() => {
-                hue = (hue + 0.2) % 360;
-                if (trace) {
-                    trace.style.background = `linear-gradient(90deg, transparent, hsl(${hue}, 60%, 65%), transparent)`;
-                }
-            }, 80);
-
-            // log operator ready (like a console stamp)
-            console.log('SATCORP Concierge active — ANU operator, skill deck loaded.');
-
-            // optional: skill cards subtle parallax tilt? 
-            // but we keep lightweight: concierge hover glow managed by css
-
-            // add dynamic 'client-first' concierge badge update
-            const insignia = document.querySelector('.insignia');
-            if (insignia) {
-                const titles = ["⚜️ ANU · TACTICAL CONCIERGE ⚜️", "⚜️ KYRAX AI · PULSΞ HUB", "⚜️ KI-RA · WORLD BUILD"];
-                let idx = 0;
-                setInterval(() => {
-                    idx = (idx + 1) % titles.length;
-                    insignia.textContent = titles[idx];
-                }, 4200);
-            }
-
-            // simulate concierge checkpoints: small dom update to show modular decks are live
-            const cards = document.querySelectorAll('.skill-card');
-            cards.forEach((card, i) => {
-                card.addEventListener('mouseenter', () => {
-                    // subtle concierge touch: card gets a data attribute
-                    card.style.borderColor = '#c5a670';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.borderColor = 'rgba(170, 145, 110, 0.15)';
-                });
-            });
-
-            // Add RTX / workstation flair to title
-            const titleH1 = document.querySelector('h1');
-            if (titleH1) {
-                // optional: no override
-            }
-
-            // append "active concierge module" indicator in footer stamp dynamic
-            const stampDiv = document.querySelector('.stamp');
-            if (stampDiv) {
-                const date = new Date();
-                const hrs = date.getHours().toString().padStart(2,'0');
-                const mins = date.getMinutes().toString().padStart(2,'0');
-                stampDiv.textContent = `CONCIERGE EMPIRE · DEV BRANCH · ${hrs}:${mins} UTC`;
-            }
-
-            // Add one more node to show AI-enhanced concierge speed
-            const footer = document.querySelector('.footer-section');
-            const indicator = document.createElement('div');
-            indicator.style.fontSize = '0.8rem';
-            indicator.style.color = '#7b6e58';
-            indicator.style.marginTop = '0.2rem';
-            indicator.style.width = '100%';
-            indicator.style.textAlign = 'center';
-            indicator.innerText = '⚡ hardware-accelerated · modular systems · AI-extended';
-            footer?.appendChild(indicator);
-
-            // and some additional skill tag under the deck: interactive fidelity
-            const deck = document.getElementById('skillDeck');
-            if (deck) {
-                // add marker that the deck is complete (13 skills)
-                const caption = document.createElement('div');
-                caption.style.textAlign = 'right';
-                caption.style.color = '#7b6f5a';
-                caption.style.marginTop = '-1rem';
-                caption.style.fontSize = '0.85rem';
-                caption.innerHTML = '13 core modules + continuous refinements';
-                deck.parentNode?.insertBefore(caption, deck.nextSibling);
-            }
-        })();
-    </script>
+    <script src="script.js"></script>
 </body>
-    </html>
+        </html>
