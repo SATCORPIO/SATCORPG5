@@ -1,23 +1,27 @@
 /* styles.css */
-/* Tech Theme: Futuristic, high-tech, neon accents, gradients */
+/* Ultra Realistic Theme: Use realistic background image, adjust for luxury concierge feel with depth and shadows */
 
 body {
     font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
-    background-color: #0a0a0a;
-    color: #00ffcc; /* Cyan for text */
+    background-image: url('https://cdn.prod.website-files.com/6781127baf9008dfea4f3289/6781127baf9008dfea4f3348_TM1134-UAE-Dubai-Como%20Residence_Vp%20Interior%2005_Rev01.avif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff; /* White text for contrast */
     line-height: 1.6;
     position: relative;
-    overflow-x: hidden;
 }
 
-#vanta-bg {
-    position: fixed;
+body::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
     z-index: -1;
 }
 
@@ -39,17 +43,17 @@ header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 4em;
     margin: 0;
-    color: #00ffcc;
+    color: #ffffff;
     letter-spacing: 4px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px #00ffcc;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Realistic shadow */
 }
 
 header .tagline {
     font-size: 1.4em;
-    color: #ffffff;
+    color: #dddddd;
     margin: 10px 0 20px;
-    text-shadow: 0 0 5px #00ffcc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 nav ul {
@@ -70,11 +74,12 @@ nav a {
     font-weight: 400;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 nav a:hover {
-    color: #00ffcc;
-    text-shadow: 0 0 10px #00ffcc;
+    color: #ffd700; /* Gold for luxury */
+    text-shadow: 0 0 10px #ffd700;
 }
 
 nav a::after {
@@ -84,7 +89,7 @@ nav a::after {
     left: 0;
     width: 100%;
     height: 2px;
-    background: #00ffcc;
+    background: #ffd700;
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -99,28 +104,30 @@ main {
 
 section {
     margin-bottom: 60px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent for glassmorphism */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Realistic shadows */
+    backdrop-filter: blur(10px); /* Glass effect for realism */
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: 2.5em;
-    color: #00ffcc;
-    border-bottom: 2px solid #00ffcc;
+    color: #ffffff;
+    border-bottom: 2px solid #ffd700;
     padding-bottom: 10px;
     margin-bottom: 20px;
-    text-shadow: 0 0 5px #00ffcc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 h3 {
     font-size: 1.8em;
-    color: #ffffff;
+    color: #dddddd;
     margin-top: 30px;
     margin-bottom: 10px;
-    text-shadow: 0 0 3px #00ffcc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 ul {
@@ -131,6 +138,7 @@ ul {
 li {
     margin-bottom: 10px;
     transition: transform 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 li:hover {
@@ -142,9 +150,10 @@ footer {
     padding: 20px 0;
     text-align: center;
     font-size: 0.9em;
-    color: #ffffff;
+    color: #dddddd;
     position: relative;
     z-index: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
