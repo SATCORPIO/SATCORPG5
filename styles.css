@@ -1,1 +1,77 @@
+:root {
+    --cobalt: #0047ff;
+    --hazard-red: #ff3e3e;
+    --glass: rgba(15, 15, 15, 0.7);
+    --border-lite: rgba(255, 255, 255, 0.1);
+}
 
+body {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 2026 Trend: HUD corners */
+.hud-layer div {
+    position: fixed;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 10px;
+    color: var(--border-lite);
+    letter-spacing: 2px;
+}
+.corner-tl { top: 0; left: 0; border-right: 1px solid var(--border-lite); border-bottom: 1px solid var(--border-lite); }
+.corner-br { bottom: 0; right: 0; border-left: 1px solid var(--border-lite); border-top: 1px solid var(--border-lite); }
+
+.glass-container {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-lite);
+    margin: 5vh auto;
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.arch-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(to right, #fff, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skill-matrix {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.module {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.module:hover {
+    border-color: var(--cobalt);
+    background: rgba(0, 71, 255, 0.05);
+}
+
+.pulse-text {
+    color: #00ffaa;
+    text-shadow: 0 0 10px #00ffaa;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0.3; } }
