@@ -1,4 +1,49 @@
 // script.js
+// JS with GSAP for animations, removed Vanta for realistic background
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation links with GSAP
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                gsap.to(window, { duration: 1, scrollTo: { y: targetElement, offsetY: 50 }, ease: "power2.inOut" });
+            }
+        });
+    });
+
+    // Section reveal on scroll with GSAP
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power2.out",
+            paused: true,
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                onEnter: () => gsap.to(section, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+            }
+        });
+    });
+
+    // Hover effect on header h1
+    const headerH1 = document.querySelector('header h1');
+    headerH1.addEventListener('mouseenter', () => {
+        gsap.to(headerH1, {
+            duration: 0.3,
+            scale: 1.05,
+            ease: "power1.inOut",
+            yoyo: true,
+            repeat: 1
+        });
+    });
+});// script.js
 // Enhanced JS with GSAP for animations and Vanta for tech background
 
 document.addEventListener('DOMContentLoaded', () => {
