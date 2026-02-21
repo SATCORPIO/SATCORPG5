@@ -3,69 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP | Tactical Concierge Services</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>SATCORP · future-tech concierge</title>
+    <!-- styles.css (embedded) -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0c10;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.02) 0%, transparent 30%),
+                radial-gradient(circle at 90% 70%, rgba(255, 80, 200, 0.02) 0%, transparent 35%),
+                linear-gradient(145deg, #05070a 0%, #0e121c 100%);
+            font-family: 'Inter', 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #dfe9fc;
+            line-height: 1.5;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        /* future-tech container — holographic edge */
+        .empire-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(6, 10, 18, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.18);
+            box-shadow: 0 25px 50px -15px #000, 0 0 0 1px rgba(0, 255, 200, 0.1) inset, 0 0 30px rgba(0, 180, 255, 0.1);
+            border-radius: 36px;
+            padding: 2.8rem 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* digital noise/glow line (dynamic) */
+        .empire-container::after {
+            content: '';
+            position: absolute;
+            top: -2px; left: 10%; right: 10%; height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff40c0, #00ffff, transparent);
+            filter: blur(2px);
+            opacity: 0.5;
+            border-radius: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* header — cyber concierge */
+        .title-block {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .insignia {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 500;
+            color: #00f0ff;
+            background: rgba(0, 30, 40, 0.6);
+            padding: 0.4rem 1.2rem 0.4rem 1.8rem;
+            border-radius: 40px;
+            border: 1px solid #00ffff80;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 12px cyan;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 6px cyan;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            background: linear-gradient(135deg, #f0f5ff, #a0f0ff, #ffc0f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px #00aaff80, 0 0 40px #ff40c080;
+        }
+
+        .concierge-tag {
+            font-size: 1.2rem;
+            border-left: 4px solid #0ff;
+            padding-left: 1.2rem;
+            color: #bbf0ff;
+            font-weight: 350;
+            max-width: 450px;
+            margin-top: 0.75rem;
+            text-shadow: 0 0 4px #0ff;
+        }
+
+        /* grid — skill deck future */
+        .deck-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem 1.5rem;
+            margin: 3rem 0 2.5rem;
+        }
+
+        /* skill cards — hologlass, cyberpunk */
+        .skill-card {
+            background: rgba(8, 15, 28, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 26px;
+            padding: 2rem 1.5rem;
+            transition: border-color 0.2s, box-shadow 0.3s, transform 0.15s;
+            box-shadow: 0 15px 30px -20px #000, 0 0 0 1px rgba(0, 255, 200, 0.05) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #0ff, #f0f, #0ff, #f0f);
+            background-size: 300% 300%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            border-radius: 26px;
+            z-index: -2;
+            filter: blur(6px);
+        }
+
+        .skill-card:hover {
+            border-color: #0ff;
+            box-shadow: 0 0 30px #0ff4, 0 20px 35px -20px black;
+            transform: translateY(-3px);
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.2;
+            animation: borderFlow 3s ease infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-number {
+            font-size: 0.85rem;
+            color: #0ff;
+            letter-spacing: 3px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #00ffff60;
+            padding-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .operator-mark {
+            color: #ff80e0;
+            text-transform: uppercase;
+        }
+
+        .skill-card h3 {
+            font-size: 1.9rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff, #b0f0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .skill-desc {
+            font-size: 0.94rem;
+            color: #ccdcf5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-desc li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.45rem;
+            border-left: 1px solid #0ff;
+            font-weight: 280;
+        }
+
+        .pill {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid #0ff;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.75rem;
+            color: #9ff;
+            letter-spacing: 0.7px;
+            margin-right: 0.3rem;
+            margin-bottom: 0.25rem;
+            backdrop-filter: blur(3px);
+        }
+
+        .tech-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 1rem;
+        }
+
+        /* featured cluster — databank style */
+        .featured-cluster {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.8rem;
+            margin: 3rem 0;
+            background: rgba(0, 15, 30, 0.4);
+            backdrop-filter: blur(16px);
+            border-radius: 36px;
+            padding: 2.2rem;
+            border: 1px solid #0ff30;
+            box-shadow: 0 0 40px #0ff08;
+        }
+
+        .manifesto {
+            background: #010a14cc;
+            padding: 2rem 2.2rem;
+            border-radius: 28px;
+            border-left: 8px solid #0ff;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #d0edff;
+            box-shadow: 0 0 30px #0ff20, inset 0 0 15px #004466;
+        }
+
+        .gold-quote {
+            font-size: 0.9rem;
+            color: #9fc;
+            letter-spacing: 1.5px;
+            margin-top: 0.8rem;
+        }
+
+        /* right panel grid */
+        .cyber-panel {
+            background: #02121fcc;
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 40px #0ff20;
+            backdrop-filter: blur(10px);
+        }
+
+        .cyber-panel span {
+            color: #0ff;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .cyber-panel ul {
+            list-style: none;
+        }
+        .cyber-panel li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed #0ff60;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #0ff60;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #aaf0ff;
+        }
+
+        .stamp {
+            font-family: 'Share Tech Mono', monospace;
+            color: #0ff;
+            border: 1px solid #0ff;
+            padding: 0.25rem 1.5rem;
+            border-radius: 30px;
+            background: #001020;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        /* live data trace */
+        .cursor-trace {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0ff, #ff80c0, #0ff, transparent);
+            width: 100%;
+            margin-top: 1.5rem;
+            opacity: 0.7;
+            filter: blur(1px);
+        }
+
+        /* glitch effect */
+        .glitch-text {
+            animation: glitch 4s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: skew(0deg, 0deg); opacity: 1; }
+            95% { transform: skew(2deg, 1deg); opacity: 0.9; text-shadow: -2px 0 cyan, 2px 0 magenta; }
+            96% { transform: skew(-2deg, -1deg); }
+        }
+
+        @media (max-width: 700px) {
+            .empire-container { padding: 1.5rem; }
+            h1 { font-size: 3.2rem; }
+            .featured-cluster { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Google Fonts: Inter + tech monospace -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="scanline"></div>
-    
-    <nav>
-        <div class="logo">SATCORP<span>//OPERATOR</span></div>
-        <div class="status-indicator">
-            <span class="dot"></span> SYSTEM ACTIVE
+    <div class="empire-container" id="satcorp-nexus">
+        <!-- header : future concierge -->
+        <div class="title-block">
+            <div>
+                <span class="insignia" id="rotatingInsignia">⌨️ ANU · TACTICAL CYBER-CONCIERGE ⌨️</span>
+                <h1 class="glitch-text">SATCORP</h1>
+                <div style="font-size: 1.8rem; letter-spacing: 5px; color: #aaddff; text-shadow: 0 0 8px magenta;">DEVELOPER BRANCH · KI-RA · KYRAX · PULSΞ</div>
+                <div class="concierge-tag">
+                    [ end-to-end problem solver · RTX · AI concierge empire ]
+                </div>
+            </div>
+            <div style="text-align: right; color: #0ff; font-family: 'Share Tech Mono';">
+                <div style="font-size: 2rem;">⚡RTX 6090</div>
+                <div style="font-size: 0.9rem;">workstation · quantum iteration</div>
+            </div>
         </div>
-    </nav>
 
-    <main>
-        <section class="hero">
-            <div class="glitch-wrapper">
-                <h1 class="glitch" data-text="CONCIERGE EMPIRE">CONCIERGE EMPIRE</h1>
+        <!-- SKILL DECK : future-tech grid 13 modules -->
+        <div class="deck-grid" id="skillDeck">
+            <!-- 1 core identity -->
+            <div class="skill-card">
+                <div class="card-number">01 <span class="operator-mark">//CORE</span></div>
+                <h3>operator identity</h3>
+                <div class="skill-desc">
+                    <ul>
+                        <li>end-to-end · design/automation/brand/systems</li>
+                        <li>vague → deployable web/brand/workflow/media</li>
+                        <li>RTX rapid iteration · client-first concierge</li>
+                    </ul>
+                </div>
             </div>
-            <p class="subtitle">End-to-end problem solving bridging design, automation, and systems architecture.</p>
-            <div class="cta-group">
-                <button class="btn-primary" onclick="scrollToDeck()">INITIALIZE SCOPE</button>
-                <button class="btn-secondary">KYRAX AI</button>
+            <!-- 2 brand/visual -->
+            <div class="skill-card">
+                <div class="card-number">02 <span class="operator-mark">//BRAND</span></div>
+                <h3>brand · identity</h3>
+                <div class="skill-desc">
+                    <ul>
+                        <li>modular identity / wordmarks · color doctrine</li>
+                        <li>social assets / decks / canva templates</li>
+                        <li>PNG/SVG/AI source · brand books</li>
+                    </ul>
+                    <div class="tech-strip"><span class="pill">neon</span><span class="pill">luxury</span><span class="pill">guidelines</span></div>
+                </div>
             </div>
-        </section>
-
-        <section id="deck" class="skill-grid">
-            <div class="skill-card" data-module="01">
-                <h3>Brand Systems</h3>
-                <p>Modular design frameworks & identity doctrine.</p>
-                <ul class="specs">
-                    <li>Logotype Design</li>
-                    <li>Scalable Frameworks</li>
-                </ul>
+            <!-- 3 web/ui -->
+            <div class="skill-card">
+                <div class="card-number">03 <span class="operator-mark">//UI</span></div>
+                <h3>web · ui systems</h3>
+                <div class="skill-desc">
+                    <ul>
+                        <li>landing/portfolios/dashboards · responsive</li>
+                        <li>GSAP · Vanta · basic React · dark/light modes</li>
+                        <li>HTML/CSS/JS · deployment (local → VPS)</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skill-card" data-module="02">
-                <h3>Systems Arch</h3>
-                <p>Workflow mapping and AI-assisted production pipelines.</p>
-                <ul class="specs">
-                    <li>SOP Creation</li>
-                    <li>Toolchain Optimization</li>
-                </ul>
+            <!-- 4 systems architecture -->
+            <div class="skill-card">
+                <div class="card-number">04 <span class="operator-mark">//SYS</span></div>
+                <h3>systems architecture</h3>
+                <div class="skill-desc">
+                    <ul>
+                        <li>SOP / workflow mapping · AI-assisted pipelines</li>
+                        <li>backend logic · freelance architecture</li>
+                        <li>brand clarity / long-term scalability</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skill-card" data-module="03">
-                <h3>Game Dev</h3>
-                <p>Real-time engine workflows and world-building.</p>
-                <ul class="specs">
-                    <li>Unreal/Unity</li>
-                    <li>Technical Art</li>
-                </ul>
+            <!-- 5 streaming -->
+            <div class="skill-card">
+                <div class="card-number">05 <span class="operator-mark">//BROADCAST</span></div>
+                <h3>stream · overlay</h3>
+                <div class="skill-desc">
+                    <ul><li>OBS scenes · alert/HUD design · animated overlays</li><li>TikTok/live visual kits</li></ul>
+                </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-line"></div>
-        <div class="footer-content">
-            <span>ANU // OPERATOR</span>
-            <span>PULSΞ BROADCAST HUB</span>
-            <span>EST. 2026</span>
+            <!-- 6 AI workflows -->
+            <div class="skill-card">
+                <div class="card-number">06 <span class="operator-mark">//AI</span></div>
+                <h3>AI creative workflows</h3>
+                <div class="skill-desc">
+                    <ul><li>prompt frameworks · brand-locked AI visuals</li><li>custom AI personas · automation</li></ul>
+                </div>
+            </div>
+            <!-- 7 game-dev/worldbuilding -->
+            <div class="skill-card">
+                <div class="card-number">07 <span class="operator-mark">//GAME</span></div>
+                <h3>world-building · engine</h3>
+                <div class="skill-desc">
+                    <ul>
+                        <li>Unity/Unreal · Blender · gameplay mods / HUD</li>
+                        <li>factions/lore/canon · cinematic key art</li>
+                        <li>FBX/GLTF · engine-ready assets</li>
+                    </ul>
+                    <div class="tech-strip"><span class="pill">Unreal</span><span class="pill">Unity</span><span class="pill">Blender</span><span class="pill">Substance</span></div>
+                </div>
+            </div>
+            <!-- 8 client experience -->
+            <div class="skill-card">
+                <div class="card-number">08 <span class="operator-mark">//CONCIERGE</span></div>
+                <h3>client experience</h3>
+                <div class="skill-desc">
+                    <ul><li>scope/revision control · security-first</li><li>pre-order vetting · checkpoints</li></ul>
+                </div>
+            </div>
+            <!-- 9 platforms -->
+            <div class="skill-card">
+                <div class="card-number">09 <span class="operator-mark">//MARKET</span></div>
+                <h3>Fiverr · freelance</h3>
+                <div class="skill-desc">
+                    <ul><li>gig architecture · package tiers</li><li>upsell logic</li></ul>
+                </div>
+            </div>
+            <!-- 10 documentation -->
+            <div class="skill-card">
+                <div class="card-number">10 <span class="operator-mark">//KNOW</span></div>
+                <h3>knowledge systems</h3>
+                <div class="skill-desc">
+                    <ul><li>long-form guides · versioned docs · taxonomies</li></ul>
+                </div>
+            </div>
+            <!-- 11 asset packaging -->
+            <div class="skill-card">
+                <div class="card-number">11 <span class="operator-mark">//DELIVERY</span></div>
+                <h3>asset packaging</h3>
+                <div class="skill-desc">
+                    <ul><li>print/web-ready · structured handoff</li></ul>
+                </div>
+            </div>
+            <!-- 12 ideal clients -->
+            <div class="skill-card">
+                <div class="card-number">12 <span class="operator-mark">//CLIENTS</span></div>
+                <h3>ideal clients</h3>
+                <div class="skill-desc">founders · creators · real estate · brands</div>
+            </div>
+            <!-- 13 differentiators -->
+            <div class="skill-card">
+                <div class="card-number">13 <span class="operator-mark">//EDGE</span></div>
+                <h3>SATCORP difference</h3>
+                <div class="skill-desc">concierge execution · brand+systems · hardware speed · modular builds</div>
+            </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <!-- featured cluster future standard / doctrine -->
+        <div class="featured-cluster">
+            <div class="manifesto">
+                <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">⟁ THE STANDARD · FUTURE PROTOCOL ⟁</p>
+                <p><strong style="color:#0ff;">Technology is a force multiplier, not a crutch.</strong> AI extends human intent, removes friction, increases leverage. We remain accountable for outcomes. New modules continuously integrated.</p>
+                <div class="gold-quote">⚡ AI-augmented · human-directed · zero-latency concierge</div>
+            </div>
+            <div class="cyber-panel">
+                <span>◈ KYRAX · PULSΞ</span>
+                <ul>
+                    <li>🔹 clarity → scope → execution → polish</li>
+                    <li>🔹 modular / scalable builds</li>
+                    <li>🔹 AI-accelerated · human-accountable</li>
+                    <li>🔹 canon · world-building · KI-RA</li>
+                    <li>🔹 real‑time engine workflows</li>
+                </ul>
+                <div style="margin-top: 1.5rem; background: #001e30; border-radius: 2rem; padding: 0.6rem 1rem; color: #0ff; text-align: center; border: 1px solid magenta;">
+                    ⚡ ANU · KI-RA STUDIOS · KYRAX AI · PULSΞ
+                </div>
+            </div>
+        </div>
+
+        <!-- footer + live data -->
+        <div class="footer-section">
+            <div class="stamp" id="liveStamp">CYBER-CONCIERGE · DEV BRANCH</div>
+            <div style="display: flex; gap: 2rem;">
+                <span>◈  immersive UI · dark/light fusion</span>
+                <span>◈  engine-ready · Unreal/Unity</span>
+            </div>
+            <div>© SATCORP · KI-RA · KYRAX · PULSΞ 2 0 6 9</div>
+        </div>
+        <div class="cursor-trace" id="neonTrace"></div>
+    </div>
+
+    <!-- script.js (embedded) -->
+    <script>
+        (function() {
+            // future-tech concierge interactivity
+            const trace = document.getElementById('neonTrace');
+            let hueShift = 180; // cyan base
+
+            // animate trace with shifting neon colors
+            setInterval(() => {
+                hueShift = (hueShift + 1) % 360;
+                if (trace) {
+                    trace.style.background = `linear-gradient(90deg, transparent, hsl(${hueShift}, 100%, 60%), hsl(${hueShift+40}, 100%, 65%), transparent)`;
+                }
+            }, 60);
+
+            // rotating insignia (future tech messages)
+            const insignia = document.getElementById('rotatingInsignia');
+            if (insignia) {
+                const messages = [
+                    "⌨️ ANU · TACTICAL CYBER-CONCIERGE ⌨️",
+                    "⚡ KYRAX AI · QUANTUM OVERLAY ⚡",
+                    "🌀 KI-RA · WORLD BUILD ENGINE 🌀",
+                    "📡 PULSΞ · BROADCAST NEXUS 📡"
+                ];
+                let idx = 0;
+                setInterval(() => {
+                    idx = (idx + 1) % messages.length;
+                    insignia.textContent = messages[idx];
+                }, 2800);
+            }
+
+            // live timestamp in stamp (cyber)
+            const stamp = document.getElementById('liveStamp');
+            function updateStamp() {
+                if (stamp) {
+                    const d = new Date();
+                    const utc = d.toUTCString().slice(17,25) + ' UTC';
+                    stamp.textContent = `CYBER-CONCIERGE · ${utc}`;
+                }
+            }
+            updateStamp();
+            setInterval(updateStamp, 1000);
+
+            // hover glint for skill cards
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.borderColor = '#ff40c0';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.borderColor = 'rgba(0, 255, 255, 0.2)';
+                });
+            });
+
+            // additional future detail: total modules counter
+            const deck = document.getElementById('skillDeck');
+            if (deck) {
+                const caption = document.createElement('div');
+                caption.style.textAlign = 'right';
+                caption.style.color = '#0ff';
+                caption.style.marginTop = '-0.8rem';
+                caption.style.fontSize = '0.85rem';
+                caption.style.fontFamily = 'Share Tech Mono';
+                caption.innerHTML = '// 13 core modules · continuous evolution //';
+                deck.parentNode?.insertBefore(caption, deck.nextSibling);
+            }
+
+            // add a subtle 'system online' message
+            const footer = document.querySelector('.footer-section');
+            const sysMsg = document.createElement('div');
+            sysMsg.style.width = '100%';
+            sysMsg.style.textAlign = 'center';
+            sysMsg.style.color = '#80ffff';
+            sysMsg.style.fontSize = '0.8rem';
+            sysMsg.style.marginTop = '0.5rem';
+            sysMsg.style.fontFamily = 'Share Tech Mono';
+            sysMsg.innerText = '>>> AI concierge active · quantum handshake established <<<';
+            footer?.appendChild(sysMsg);
+
+            // RTX indicator pulse
+            const rtxDiv = document.querySelector('[style*="RTX 6090"]');
+            if (rtxDiv) {
+                setInterval(() => {
+                    rtxDiv.style.textShadow = `0 0 ${10+Math.sin(Date.now()/200)*5}px #0ff`;
+                }, 50);
+            }
+        })();
+    </script>
 </body>
 </html>
